@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const expressLayout = require("express-ejs-layouts");
 const indexRouter = require('./routes/index')
+const authorsRouter = require('./routes/authors')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname+"/views")
@@ -24,6 +25,7 @@ bdd.on('error', error=>console.log(error))
 bdd.once('open', ()=>console.log("Connscted to mongoose successfully"))
 
 app.use('/', indexRouter)
+app.use('/authors', authorsRouter)
 
 app.listen(process.env.PORT || 4000)
 
